@@ -10,7 +10,7 @@ const automationCtrl = {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         // executablePath,
-        headless: false,
+        headless: true,
 
       });
       const page = await browser.newPage();
