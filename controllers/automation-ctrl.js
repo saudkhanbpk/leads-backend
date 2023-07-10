@@ -1,9 +1,14 @@
 const puppeteer = require('puppeteer');
+const locateChrome = require('locate-chrome');
+
+  const executablePath =  new Promise(resolve => locateChrome(arg => resolve(arg)));
 const automationCtrl = {
   getAutomation: async (req, res) => {
     try {
       const browser = await puppeteer.launch({
         headless: false,
+        executablePath: executablePath
+        
       });
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
