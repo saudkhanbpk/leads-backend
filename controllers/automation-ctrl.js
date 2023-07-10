@@ -3,12 +3,7 @@ const automationCtrl = {
   getAutomation: async (req, res) => {
     try {
       const browser = await puppeteer.launch({
-        headless: false,
-            args: ["--no-sandbox", "--disabled-setupid-sandbox"],
-             ignoreDefaultArgs: ["--disable-extensions"],
-        executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe"
-
-
+        headless: true,
       });
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
