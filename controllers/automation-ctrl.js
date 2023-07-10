@@ -2,6 +2,8 @@ const puppeteer = require('puppeteer');
 const chromium = require('chrome-aws-lambda');
 const automationCtrl = {
   getAutomation: async (req, res) => {
+    console.log(req.body)
+    let { email, password } = req.body
     try {
       const browser = await puppeteer.launch({
         executablePath: await chromium.executablePath,
@@ -14,14 +16,14 @@ const automationCtrl = {
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
       await page.waitForSelector('input[type="email"]');
-      await page.type('input[type="email"]', 'lola@email-alomarstaffing.com');
+      await page.type('input[type="email"]', email);
       await page.click('#identifierNext');
       await page.waitForSelector('input[type="password"]', { visible: true });
 
       // Set the password value directly using JavaScript injection
       await page.evaluate(() => {
         const passwordInput = document.querySelector('input[type="password"]');
-        passwordInput.value = '846h\\BSj{bkd.9@r';
+        passwordInput.value = password;
       });
       await page.click('#passwordNext');
       await page.waitForNavigation({ timeout: 60000, waitUntil: 'domcontentloaded' });
