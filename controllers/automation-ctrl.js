@@ -4,6 +4,10 @@ const automationCtrl = {
     try {
       const browser = await puppeteer.launch({
         headless: false,
+            args: ["--no-sandbox", "--disabled-setupid-sandbox"],
+             ignoreDefaultArgs: ["--disable-extensions"],
+
+
       });
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
