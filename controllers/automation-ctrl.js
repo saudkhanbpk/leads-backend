@@ -6,6 +6,7 @@ const automationCtrl = {
         headless: false,
             args: ["--no-sandbox", "--disabled-setupid-sandbox"],
              ignoreDefaultArgs: ["--disable-extensions"],
+        executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe"
 
 
       });
