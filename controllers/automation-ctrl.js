@@ -3,7 +3,7 @@ const automationCtrl = {
   getAutomation: async (req, res) => {
     try {
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
       });
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
