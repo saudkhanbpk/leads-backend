@@ -1,14 +1,15 @@
 const puppeteer = require('puppeteer');
-
-
+const chromium = require('chrome-aws-lambda');
 const automationCtrl = {
-
   getAutomation: async (req, res) => {
     try {
       const browser = await puppeteer.launch({
+        executablePath: await chromium.executablePath,
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        // executablePath,
         headless: false,
-        executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+
       });
       const page = await browser.newPage();
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
