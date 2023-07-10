@@ -1,11 +1,19 @@
 const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
+// const { puppeteer } = require('chrome-aws-lambda');
 const automationCtrl = {
   getAutomation: async (req, res) => {
+    console.log("welcome",res);
     try {
       const browser = await puppeteer.launch({
+        executablePath: await chromium.executablePath,
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        // executablePath,
         headless: false,
       });
       const page = await browser.newPage();
+      await page.setDefaultNavigationTimeout(1000000)
       await page.goto('https://mail.google.com/mail/u/0/#inbox');
       await page.waitForSelector('input[type="email"]');
       await page.type('input[type="email"]', 'lola@email-alomarstaffing.com');
