@@ -6,7 +6,6 @@ const automationCtrl = {
     let { email, password } = req.body
     try {
       const browser = await puppeteer.launch({
-        executablePath: await chromium.executablePath,
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         // executablePath,
